@@ -26,7 +26,6 @@ main{
   width: 90%;
   margin-bottom: 10em;
   padding: 0 1em;
-  overflow: hidden;
 }
 
 .dices {
@@ -97,6 +96,7 @@ main{
     height: 75vh;
     margin-top: 3em;
     margin-bottom: 5em;
+    padding: 0 1em 45em 1em;
   }
 
   .btn {
