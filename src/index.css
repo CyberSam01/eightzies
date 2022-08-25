@@ -75,6 +75,7 @@ main{
   }
 
   .main--container > p {
+    padding: 0 2em;
     font-size: 2em;
   }
 
@@ -97,6 +98,7 @@ main{
     margin-top: 3em;
     margin-bottom: 5em;
     padding: 0 1em 45em 1em;
+    aspect-ratio: none;
   }
 
   .btn {
