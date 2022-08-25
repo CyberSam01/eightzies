@@ -33,7 +33,7 @@ function App() {
     console.log(event.target);
     setDiceArray(prevDice => prevDice.map( dice => {
       if (chosenNum === 0 || chosenNum == event.target.getAttribute("value")) {
-        if (dice.id === event.target.getAttribute("name")) {
+        if (dice.id === event.target.getAttribute("name") && !dice.chosen) {
           setEndGame(endGame + 1)
           return {...dice, chosen:true, value:event.target.getAttribute("value")}
         } else {
@@ -43,11 +43,7 @@ function App() {
         return dice
       }
     }))
-    if (windowDimensions < 1500 && endGame == 7 ) {
-      setPlayAgain(true)
-      setPText(`You won in ${tries} tries!`)
-      console.log(`CONFETTI!!!! ${tries}`)
-    } else if (windowDimensions > 1500 && endGame == 9 ) {
+    if (windowDimensions < 1500 && endGame == 7 || windowDimensions > 1500 && endGame == 9) {
       setPlayAgain(true)
       setPText(`You won in ${tries} tries!`)
       console.log(`CONFETTI!!!! ${tries}`)
