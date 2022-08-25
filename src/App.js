@@ -6,9 +6,10 @@ function App() {
   const [chosenNum, setChosenNum] = useState(0)
   const [endGame, setEndGame] = useState(0)
   const [tries, trackTries] = useState(1)
+  const [windowDimensions, setWindowDimensions] = useState(window.innerWidth)
   const [pText, setPText] = useState("Roll until all dice are the same. Click each die to freeze it at its current value between rolls.")
   const [playAgain, setPlayAgain] = useState(false)
-  const [diceArray, setDiceArray] = useState(new Array(8).fill(null).map(() => {
+  const [diceArray, setDiceArray] = useState(new Array(windowDimensions < 1500 ? 8 : 10).fill(null).map(() => {
     return {
       id:nanoid(),
       num:Math.floor(Math.random() * 6 + 1),
@@ -17,6 +18,10 @@ function App() {
     }
   }))
 
+  window.addEventListener("resize", () => {
+    setWindowDimensions(window.innerWidth)
+  })
+
   useEffect(() => {
       chosenNum === 0 && diceArray.map(die => {
         die.chosen && setChosenNum(die.num)
@@ -24,6 +29,7 @@ function App() {
   },[dieClick, diceArray])
 
   function dieClick(event) {
+    console.log(event.target);
     setDiceArray(prevDice => prevDice.map( dice => {
       if (chosenNum === 0 || chosenNum == event.target.getAttribute("value")) {
         if (dice.id === event.target.getAttribute("name")) {
@@ -36,12 +42,15 @@ function App() {
         return dice
       }
     }))
-    if (endGame == 7 ) {
+    if (windowDimensions < 1500 && endGame == 7 ) {
+      setPlayAgain(true)
+      setPText(`You won in ${tries} tries!`)
+      console.log(`CONFETTI!!!! ${tries}`)
+    } else if (windowDimensions > 1500 && endGame == 9 ) {
       setPlayAgain(true)
       setPText(`You won in ${tries} tries!`)
       console.log(`CONFETTI!!!! ${tries}`)
     }
-
   }
 
   function buttonClick() {
@@ -73,7 +82,7 @@ function App() {
   return (
       <main className="main">
         <div className="main--container">
-          <h1>Eightzies</h1>
+          <h1>{windowDimensions > 1500 ? "Tenzies" : "Eightzies"}</h1>
           <p>{pText}</p>
           <div className="dices">
             {diceArray.map((dice) => {

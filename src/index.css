@@ -4,14 +4,15 @@
 
 body {
   margin: 0;
+  background-color: #0B2434;
   font-family: karla;
   font-weight: 400;
+  color: #0B2434;
 }
 
 main{
-  background-color: #0B2434;
   width: 100vw;
-  height: 100vh;  
+  height: 100%;  
   display: flex;
   justify-content: center;
   align-items: center;
@@ -46,7 +47,7 @@ main{
 }
 
 .btn {
-  background-color: #5035FF;
+  background-color: #6107F5;
   font-size: 1em;
   border: none;
   color: white;
@@ -65,6 +66,44 @@ main{
 
 .playAgainBtn {
   padding: 1em 2em;
-  /* display: none; */
+}
+
+@media (min-width: 800px) { 
+
+  .main--container > h1 {
+    font-size: 4em;
+  }
+
+  .main--container > p {
+    font-size: 2em;
+  }
+
+  .dice {
+    font-size: 3em;
+    width: 15%;
+    aspect-ratio: 1;
+    background-color: white;
+    margin:.3em;
+    box-shadow: 0 2px 6px -3px #111; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 7px;
+  }
+
+  .main--container {
+    width: 40vw;
+    height: 75vh;
+    margin-top: 3em;
+    margin-bottom: 5em;
+  }
+
+  .btn {
+    font-size: 2.5em;
+    padding: .5em 2em;
+  }
+  .chosen-dice {
+    background-color: #59E391;
+  }
 }
 
