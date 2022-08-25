@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { nanoid } from 'nanoid'
+import Confetti from 'react-confetti'
 
 function App() {
 
@@ -81,6 +82,7 @@ function App() {
 
   return (
       <main className="main">
+      {playAgain && <Confetti/>}
         <div className="main--container">
           <h1>{windowDimensions > 1500 ? "Tenzies" : "Eightzies"}</h1>
           <p>{pText}</p>
